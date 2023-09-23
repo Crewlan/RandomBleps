@@ -26,12 +26,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.wolfcodea.randombleps.core.colors.AppColors
+import com.wolfcodea.randombleps.core.navigation.AppScreens
 import com.wolfcodea.randombleps.data.models.AnimalsTagViewModel
 
 
 @Composable
-fun AnimalsHome(viewModel: AnimalsTagViewModel) {
+fun AnimalsHome(viewModel: AnimalsTagViewModel, navController: NavController) {
     val animalsTag = viewModel.data.value.data?.toMutableList()
 
     if (viewModel.data.value.loading == true) {
@@ -40,22 +42,22 @@ fun AnimalsHome(viewModel: AnimalsTagViewModel) {
         }
     } else {
         Log.d("TAG", "AnimalsHome: $animalsTag")
-        BuildLazyAnimals(animalsTag)
+        BuildLazyAnimals(animalsTag, navController)
     }
 }
 
 @Composable
-fun BuildLazyAnimals(animals: List<String>?) {
+fun BuildLazyAnimals(animals: List<String>?, navController: NavController) {
     LazyColumn {
         items(items = animals!!) {
-            BuildAnimalTile(it, {})
+            BuildAnimalTile(it, navController)
         }
     }
 }
 
 
 @Composable
-fun BuildAnimalTile(animalName: String, onClick: (String) -> Unit) {
+fun BuildAnimalTile(animalName: String, navController: NavController) {
     Row(
         modifier = Modifier
             .padding(6.dp)
@@ -68,7 +70,7 @@ fun BuildAnimalTile(animalName: String, onClick: (String) -> Unit) {
             )
             .clip(RoundedCornerShape(50.dp))
             .background(Color.Transparent)
-            .clickable {onClick },
+            .clickable {navController.navigate(route = AppScreens.AnimalDetailsScreen.name+"/$animalName") },
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(

@@ -1,0 +1,14 @@
+<component name="CopyrightManager">
+  <settings>
+    <LanguageOptions name="Kotlin">
+      <option name="fileTypeOverride" value="3" />
+      <option name="separateBefore" value="true" />
+      <option name="lenBefore" value="120" />
+      <option name="lenAfter" value="120" />
+    </LanguageOptions>
+    <LanguageOptions name="__TEMPLATE__">
+      <option name="separateBefore" value="true" />
+      <option name="lenBefore" value="120" />
+    </LanguageOptions>
+  </settings>
+</component>

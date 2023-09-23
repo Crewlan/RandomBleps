@@ -15,7 +15,7 @@ import com.wolfcodea.randombleps.presentation.screens.HomeScreen
 fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreens.HomeScreen.name) {
-        composable(AppScreens.HomeScreen.name) {
+        composable(AppScreens.HomeScreen.name) {it ->
             val animalsTagViewModel = hiltViewModel<AnimalsTagViewModel>()
             HomeScreen(viewModel = animalsTagViewModel, navController = navController, )
         }

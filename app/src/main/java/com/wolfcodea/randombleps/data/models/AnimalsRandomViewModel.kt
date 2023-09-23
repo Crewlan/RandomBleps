@@ -10,21 +10,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//@HiltViewModel
-//class AnimalsRandomViewModel @Inject constructor(
-//    private val datasource: AnimalsRandomRemoteDatasource) : ViewModel() {
-//    val data: MutableState<DataOrException<AnimalsRandom, Boolean, Exception>> = mutableStateOf(
-//        DataOrException(null, true, Exception(""))
-//    )
-//
-//
-//     fun getAnimalsRandom(animalName: String) {
-//        viewModelScope.launch {
-//            data.value.loading = true
-//            data.value = datasource.getAnimalsRandom(animalName)
-//            if (data.value.data.toString().isNotEmpty()) {
-//                data.value.loading = false
-//            }
-//        }
-//    }
-//}
+@HiltViewModel
+class AnimalsRandomViewModel @Inject constructor(
+    private val datasource: AnimalsRandomRemoteDatasource) : ViewModel() {
+    val data: MutableState<DataOrException<AnimalsRandom, Boolean, Exception>> = mutableStateOf(
+        DataOrException(null, true, Exception(""))
+    )
+
+
+     fun getAnimalsRandom(animalName: String) {
+        viewModelScope.launch {
+            data.value.loading = true
+            data.value = datasource.getAnimalsRandom(animalName)
+            if (data.value.data.toString().isNotEmpty()) {
+                data.value.loading = false
+            }
+        }
+    }
+}

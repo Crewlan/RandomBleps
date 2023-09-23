@@ -16,8 +16,8 @@ interface IAnimalsRandomApi {
         "X-RapidAPI-Key: ${Constants.API_KEY}",
         "X-RapidAPI-Host: ${Constants.API_HOST}"
     )
-    @GET("${Endpoints.RANDOM_MLEM}?tag={animalName}")
-    suspend fun getAnimalsRandom(@Query("animalName") animalName: String): AnimalsRandom
+    @GET(Endpoints.RANDOM_MLEM)
+    suspend fun getAnimalsRandom(@Query("tag") animalName: String): AnimalsRandom
 }
 
 class AnimalsRandomRemoteDatasource @Inject constructor(private val api: IAnimalsRandomApi) {
